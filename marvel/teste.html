@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <style>
+            img{
+                width: 250px;
+                border-bottom-style: solid;
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+
+            }
+            .personagem{
+                width: 250px;
+                margin: 23px;
+                border-style:dotted;
+                border-radius: 15px;
+                text-align: center;
+
+            }
+        </style>
+    </head>
+    <body>
+        <div id='herois'
+        style="
+        display:flex;
+        flex-wrap: wrap;
+        justify-content:space-between;
+        "></div>
+    </body>
+    <script>
+        const timeStamp= '1594158815';
+        const apiKey='7aa12e7cd2b34e756af648b48e1f04c7';
+        const md5='604ccd5fba237b58392e5b4ae332a00f';
+        fetch (`https://gateway.marvel.com/v1/public/characters?ts=${timeStamp}&apikey=${apiKey}&hash=${md5}&limit=20`)
+        .then((response)=>{
+            return response.json();
+        }).then((jsonParsed)=>{
+            const divHeroi=document.querySelector('#herois');
+            jsonParsed.data.results.forEach(element=>{
+                const imagem=element.thumbnail.path+'.'+element.thumbnail.extension
+                const nomeHeroi=element.name
+
+                createDivHeroi(imagem,nomeHeroi,divHeroi);
+            });
+
+            console.log(jsonParsed);
+        })
+
+        function createDivHeroi(imagem,nomeHeroi,divToAppend){
+            const divPrim=document.createElement('div')
+            const divSec=document.createElement('div')
+            const textName=document.createElement('text')
+            const img=document.createElement('img')
+
+            textName.textContent=nomeHeroi
+            img.src=imagem
+
+            divSec.appendChild(img)
+            divSec.appendChild(textName)
+            divPrim.appendChild(divSec)
+            divToAppend.appendChild(divPrim)
+
+            divPrim.classList.add("personagem");
+        }
+    </script>
+</html>

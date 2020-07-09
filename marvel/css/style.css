@@ -1,0 +1,29 @@
+
+
+body{
+    background: black;
+}
+
+
+img.img-thumbnail{
+    width: 250px;
+    height: 250px;
+    margin: 22px;
+    border-color: darkgoldenrod;
+    border-width: 10px;
+    border-style: ridge;
+    border-radius: 30px;
+
+}
+
+.title{
+    text-size-adjust: 20%;
+    text-align: center;
+    color: goldenrod;
+}
+.moddate{
+    text-size-adjust: 20%;
+   
+    text-align: center;
+    color: gray;
+}
